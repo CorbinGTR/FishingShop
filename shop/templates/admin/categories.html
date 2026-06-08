@@ -1,0 +1,25 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1 class="page-title">Категории</h1>
+<div class="card p-3 mb-4">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-main">Добавить категорию</button>
+    </form>
+</div>
+<table class="table table-bordered bg-white">
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>URL</th>
+    </tr>
+    {% for category in categories %}
+    <tr>
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.slug }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Админ-панель</h5>
+            <a href="{% url 'shop:admin_dashboard' %}" class="btn btn-outline-main mb-2">Главная</a>
+            <a href="{% url 'shop:admin_products' %}" class="btn btn-outline-main mb-2">Товары</a>
+            <a href="{% url 'shop:admin_categories' %}" class="btn btn-outline-main mb-2">Категории</a>
+            <a href="{% url 'shop:admin_orders' %}" class="btn btn-outline-main mb-2">Заказы</a>
+            <a href="{% url 'shop:admin_users' %}" class="btn btn-outline-main mb-2">Пользователи</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        {% block admin_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

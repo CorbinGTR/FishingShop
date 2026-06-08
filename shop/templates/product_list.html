@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-4 mb-4 rounded" style="background:#dfeee7;">
+    <h1 class="page-title">Товары для рыбалки</h1>
+    <p class="mb-0">Удилища, катушки, приманки, леска и другие рыболовные товары.</p>
+</div>
+<form method="get" class="row mb-4">
+    <div class="col-md-4">
+        <input type="text" name="search" class="form-control" placeholder="Поиск товара">
+    </div>
+    <div class="col-md-4">
+        <select name="category" class="form-select">
+            <option value="">Все категории</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-main w-100">Найти</button>
+    </div>
+</form>
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" class="card-img-top" style="height:230px; object-fit:cover;">
+            {% endif %}
+            <div class="card-body">
+                <h5>{{ product.name }}</h5>
+                <p class="price">{{ product.price }} ₽</p>
+                <a href="{% url 'shop:product_detail' product.slug %}" class="btn btn-outline-main">
+                    Подробнее
+                </a>
+                <a href="{% url 'shop:cart_add' product.id %}" class="btn btn-main">
+                    В корзину
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Товары не найдены.</p>
+    {% endfor %}
+</div>
+{% endblock %}

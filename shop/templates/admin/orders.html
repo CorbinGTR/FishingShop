@@ -1,0 +1,28 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1 class="page-title">Заказы</h1>
+<table class="table table-bordered bg-white">
+    <tr>
+        <th>ID</th>
+        <th>Покупатель</th>
+        <th>Телефон</th>
+        <th>Статус</th>
+        <th>Дата</th>
+        <th></th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.customer_name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.get_status_display }}</td>
+        <td>{{ order.created_at }}</td>
+        <td>
+            <a href="{% url 'shop:admin_order_detail' order.id %}" class="btn btn-sm btn-main">
+                Открыть
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

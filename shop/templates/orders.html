@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="page-title">Мои заказы</h1>
+{% if orders %}
+{% for order in orders %}
+<div class="card p-3 mb-3">
+    <h5>Заказ №{{ order.id }}</h5>
+    <p>Дата: {{ order.created_at }}</p>
+    <p>Статус: {{ order.get_status_display }}</p>
+    <p>Сумма: {{ order.get_total_price }} ₽</p>
+</div>
+{% endfor %}
+{% else %}
+<p>У вас пока нет заказов.</p>
+{% endif %}
+{% endblock %}

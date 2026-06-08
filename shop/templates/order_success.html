@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4">
+    <h1 class="page-title">Заказ оформлен</h1>
+    <p>Ваш заказ №{{ order.id }} успешно создан.</p>
+    <a href="{% url 'shop:product_list' %}" class="btn btn-main">
+        Вернуться в каталог
+    </a>
+</div>
+{% endblock %}

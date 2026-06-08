@@ -1,0 +1,40 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1 class="page-title">Заказ №{{ order.id }}</h1>
+<div class="card p-3 mb-3">
+    <p><b>Покупатель:</b> {{ order.customer_name }}</p>
+    <p><b>Телефон:</b> {{ order.phone }}</p>
+    <p><b>Адрес:</b> {{ order.address }}</p>
+    <p><b>Пользователь:</b> {{ order.user }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label>Статус заказа</label>
+        <select name="status" class="form-control mb-3">
+            {% for value, label in order.STATUS_CHOICES %}
+            <option value="{{ value }}" {% if order.status==value %}selected{% endif %}>
+                {{ label }}
+            </option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-main">Сохранить статус</button>
+    </form>
+</div>
+<h4>Товары в заказе</h4>
+<table class="table table-bordered bg-white">
+    <tr>
+        <th>Товар</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+    </tr>
+    {% for item in order.items.all %}
+    <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.price }} ₽</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.get_cost }} ₽</td>
+    </tr>
+    {% endfor %}
+</table>
+<h4>Итого: {{ order.get_total_price }} ₽</h4>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card p-4 shadow auth-card">
+        <h1 class="page-title text-center mb-4">Вход</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                {{ form.password }}
+            </div>
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                Неверный логин или пароль.
+            </div>
+            {% endif %}
+            <button class="btn btn-main w-100 mt-2">
+                Войти
+            </button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{% url 'shop:register' %}">Нет аккаунта? Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
