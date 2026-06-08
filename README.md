@@ -9,7 +9,8 @@
 ## Установка и запуск проекта
 pip install -r requirements.txt
 
-В проекте используется PostgreSQL. Необходимо создать базу данных и указать параметры подключения в файле `settings.py`:
+В проекте используется PostgreSQL.
+Необходимо создать базу данных и указать параметры подключения в файле `settings.py`:
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
